@@ -19,6 +19,7 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
       var state = this.state;
       emit(TaskState(allTasks: List.from(state.allTasks)..remove(event.task)));
     });
+
     on<UpdateTaskEvent>((event, emit) {
       final state = this.state;
       final task = event.task;
