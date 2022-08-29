@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc_pattern/services/services.dart';
 
 import '../blocs/task_exports.dart';
 import '../models/task.dart';
@@ -40,7 +41,7 @@ class AddTaskScreen extends StatelessWidget {
                   child: Text('Cancel')),
               ElevatedButton(
                   onPressed: () {
-                    var task = Task(title: titleController.text);
+                    var task = Task(title: titleController.text, id: GUIDGen.generate());
                     context
                         .read<TaskBloc>()
                         .add(AddTaskEvent(task: task));
