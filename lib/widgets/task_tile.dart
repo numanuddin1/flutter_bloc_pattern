@@ -16,6 +16,7 @@ class TaskTile extends StatelessWidget {
         ? context.read<TaskBloc>().add(DeleteTaskEvent(task: task))
         : context.read<TaskBloc>().add(RemovedTaskEvent(task: task));
   }
+
   @override
   Widget build(BuildContext context) {
     return ListTile(
