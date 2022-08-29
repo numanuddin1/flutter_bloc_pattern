@@ -35,3 +35,11 @@ class DeleteTaskEvent extends TaskEvent {
   List<Object?> get props => [task];
 
 }
+class RemovedTaskEvent extends TaskEvent {
+  final Task task;
+  RemovedTaskEvent({required this.task});
+
+  @override
+  List<Object?> get props => [task];
+
+}

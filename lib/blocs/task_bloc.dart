@@ -13,13 +13,12 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
   TaskBloc() : super(TaskState()) {
     on<AddTaskEvent>((event, emit) {
       var state = this.state;
-      emit(TaskState(allTasks: List.from(state.allTasks)..add(event.task)));
+      emit(TaskState(allTasks: List.from(state.allTasks)..add(event.task),removedTasks: state.removedTasks));
     });
     on<DeleteTaskEvent>((event, emit) {
       var state = this.state;
       emit(TaskState(allTasks: List.from(state.allTasks)..remove(event.task)));
     });
-
     on<UpdateTaskEvent>((event, emit) {
       final state = this.state;
       final task = event.task;
@@ -29,6 +28,12 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
           ? allTasks.insert(index, task.copyWith(isDone: true))
           : allTasks.insert(index, task.copyWith(isDone: false));
       emit(TaskState(allTasks: allTasks));
+    });
+    on<RemovedTaskEvent>((event, emit) {
+      var state = this.state;
+      emit(TaskState(
+          allTasks: List.from(state.allTasks)..remove(event.task),
+          removedTasks: List.from(state.removedTasks)..add(event.task.copyWith(isDeleted: true))));
     });
   }
 }
