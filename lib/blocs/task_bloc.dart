@@ -17,7 +17,7 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
     });
     on<DeleteTaskEvent>((event, emit) {
       var state = this.state;
-      emit(TaskState(allTasks: List.from(state.allTasks)..remove(event.task)));
+      emit(TaskState(allTasks: state.allTasks, removedTasks: List.from(state.removedTasks)..remove(event.task.copyWith(isDeleted: true ))));
     });
     on<UpdateTaskEvent>((event, emit) {
       final state = this.state;
@@ -27,7 +27,7 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
       task.isDone == false
           ? allTasks.insert(index, task.copyWith(isDone: true))
           : allTasks.insert(index, task.copyWith(isDone: false));
-      emit(TaskState(allTasks: allTasks));
+      emit(TaskState(allTasks: allTasks, removedTasks: state.removedTasks));
     });
     on<RemovedTaskEvent>((event, emit) {
       var state = this.state;

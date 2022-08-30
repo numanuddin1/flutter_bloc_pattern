@@ -2,9 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc_pattern/blocs/task_exports.dart';
 import 'package:flutter_bloc_pattern/screens/recycle_bin.dart';
 import 'package:flutter_bloc_pattern/screens/tasks_screen.dart';
+import 'package:flutter_bloc_pattern/services/app_router.dart';
 
-class MyDrawer extends StatelessWidget {
+class MyDrawer extends StatefulWidget {
   const MyDrawer({Key? key}) : super(key: key);
+
+  @override
+  State<MyDrawer> createState() => _MyDrawerState();
+}
+
+class _MyDrawerState extends State<MyDrawer> {
+  bool switchValue = false;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +33,7 @@ class MyDrawer extends StatelessWidget {
               ),
             ),
             GestureDetector(
-              onTap: () => Navigator.of(context).pushNamed(TasksScreen.id),
+              onTap: () => Navigator.of(context).pushReplacementNamed(TasksScreen.id),
               child: ListTile(
                 leading: Icon(Icons.task),
                 title: Text('My Tasks'),
@@ -38,7 +46,7 @@ class MyDrawer extends StatelessWidget {
             ),
             Divider(),
             GestureDetector(
-              onTap: () => Navigator.of(context).pushNamed(RecycleBin.id),
+              onTap: () => Navigator.of(context).pushReplacementNamed(RecycleBin.id),
               child: ListTile(
                 leading: Icon(Icons.delete),
                 title: Text('Bin'),
@@ -48,8 +56,12 @@ class MyDrawer extends StatelessWidget {
                   },
                 ),
               ),
-            )
-
+            ),
+            Switch(value: switchValue, onChanged: (newValue){
+              setState(() {
+                switchValue = newValue;
+              });
+            })
           ],
         ),
       ),
