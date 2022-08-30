@@ -4,15 +4,10 @@ import 'package:flutter_bloc_pattern/screens/recycle_bin.dart';
 import 'package:flutter_bloc_pattern/screens/tasks_screen.dart';
 import 'package:flutter_bloc_pattern/services/app_router.dart';
 
-class MyDrawer extends StatefulWidget {
+import '../blocs/task_bloc/task_state.dart';
+
+class MyDrawer extends StatelessWidget {
   const MyDrawer({Key? key}) : super(key: key);
-
-  @override
-  State<MyDrawer> createState() => _MyDrawerState();
-}
-
-class _MyDrawerState extends State<MyDrawer> {
-  bool switchValue = false;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +28,8 @@ class _MyDrawerState extends State<MyDrawer> {
               ),
             ),
             GestureDetector(
-              onTap: () => Navigator.of(context).pushReplacementNamed(TasksScreen.id),
+              onTap: () =>
+                  Navigator.of(context).pushReplacementNamed(TasksScreen.id),
               child: ListTile(
                 leading: Icon(Icons.task),
                 title: Text('My Tasks'),
@@ -46,7 +42,8 @@ class _MyDrawerState extends State<MyDrawer> {
             ),
             Divider(),
             GestureDetector(
-              onTap: () => Navigator.of(context).pushReplacementNamed(RecycleBin.id),
+              onTap: () =>
+                  Navigator.of(context).pushReplacementNamed(RecycleBin.id),
               child: ListTile(
                 leading: Icon(Icons.delete),
                 title: Text('Bin'),
@@ -57,11 +54,14 @@ class _MyDrawerState extends State<MyDrawer> {
                 ),
               ),
             ),
-            Switch(value: switchValue, onChanged: (newValue){
-              setState(() {
-                switchValue = newValue;
-              });
-            })
+            BlocBuilder<SwitchBloc, SwitchState>(
+              builder: (context, state) {
+                return Switch(value: state.switchValue, onChanged: (newValue) {
+                 newValue ? context.read<SwitchBloc>().add(SwitchOnEvent())
+                 : context.read<SwitchBloc>().add(SwitchOffEvent());
+                });
+              },
+            )
           ],
         ),
       ),
