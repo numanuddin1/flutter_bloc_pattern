@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc_pattern/blocs/task_exports.dart';
+import 'package:flutter_bloc_pattern/widgets/list_item.dart';
 import 'package:flutter_bloc_pattern/widgets/task_tile.dart';
 
 import '../models/task.dart';
@@ -18,7 +19,7 @@ class TaskList extends StatelessWidget {
         itemCount: taskList.length,
         itemBuilder: (context, index) {
           var task = taskList[index];
-          return TaskTile(task: task);
+          return ListItem(task: task);
         });
   }
 }

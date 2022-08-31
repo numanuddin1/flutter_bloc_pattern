@@ -17,12 +17,6 @@ class RecycleBin extends StatelessWidget {
         return Scaffold(
           appBar: AppBar(
             title: const Text('Recycle Bin'),
-            actions: [
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.add),
-              )
-            ],
           ),
           body: Column(
             crossAxisAlignment: CrossAxisAlignment.center,

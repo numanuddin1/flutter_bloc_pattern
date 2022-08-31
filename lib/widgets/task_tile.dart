@@ -23,7 +23,7 @@ class TaskTile extends StatelessWidget {
       onLongPress: () =>
           _removeOrDeleteTask(context, task),
       title: Text(
-        task.title,
+        '${task.title}',
         style: TextStyle(
             decoration: task.isDone! ? TextDecoration.lineThrough : null),
       ),

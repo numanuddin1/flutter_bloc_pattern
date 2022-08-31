@@ -7,7 +7,7 @@ part 'switch_event.dart';
 part 'switch_state.dart';
 
 class SwitchBloc extends Bloc<SwitchEvent, SwitchState> {
-  SwitchBloc() : super(SwitchInitial(switchValue: false)) {
+  SwitchBloc() : super(SwitchInitial(switchValue: true)) {
     on<SwitchOnEvent>((event, emit) {
       emit(const SwitchState(switchValue: true));
     });
