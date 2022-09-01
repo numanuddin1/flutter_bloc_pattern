@@ -11,7 +11,6 @@ class CategoryCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 200,
-
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(25),
         color: Color(0xFF041955),

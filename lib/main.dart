@@ -1,7 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc_pattern/screens/tasks_screen.dart';
+import 'package:flutter_bloc_pattern/screens/tabs_screen.dart';
+import 'package:flutter_bloc_pattern/screens/pending_screen.dart';
 import 'package:flutter_bloc_pattern/services/app_router.dart';
 import 'package:flutter_bloc_pattern/services/app_theme.dart';
 
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
             title: 'Flutter Bloc', 
             theme: state.switchValue ? AppThemes.appThemeData[AppTheme.darkTheme] : AppThemes.appThemeData[AppTheme.lightTheme],
             debugShowCheckedModeBanner: false,
-            home: TasksScreen(),
+            home: TabScreen(),
             onGenerateRoute: appRouter.onGenerateRoute,
           );
         },
