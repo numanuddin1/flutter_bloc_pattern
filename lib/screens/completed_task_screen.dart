@@ -24,13 +24,6 @@ class CompletedTasksScreen extends StatelessWidget {
               SizedBox(
                 height: 10,
               ),
-              Center(
-                child: Chip(
-                  label: Text(
-                    '${tasksList.length} Tasks',
-                  ),
-                ),
-              ),
               Expanded(child: TaskList(taskList: tasksList))
             ],
           ),

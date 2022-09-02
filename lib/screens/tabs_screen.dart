@@ -63,7 +63,7 @@ class _TabScreenState extends State<TabScreen> {
         ],
       ),
       body: _pages[currentIndex]['pageName'],
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: currentIndex == 0 ? FloatingActionButton(
         onPressed: () => _addTask(context),
         tooltip: 'Add Task',
         backgroundColor: Color(0xffdb09ee),
@@ -72,7 +72,7 @@ class _TabScreenState extends State<TabScreen> {
           color: Colors.white,
           size: 28,
         ),
-      ),
+      ): null,
       drawer: MyDrawer(),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Color(0xFF041955),
@@ -85,7 +85,7 @@ class _TabScreenState extends State<TabScreen> {
         currentIndex: currentIndex,
         items: [
           BottomNavigationBarItem(
-              icon: Icon(Icons.list), label: 'Pending Task'),
+              icon: Icon(Icons.incomplete_circle), label: 'Pending Task'),
           BottomNavigationBarItem(icon: Icon(Icons.done), label: 'Completed'),
           BottomNavigationBarItem(
               icon: Icon(Icons.favorite), label: 'Favorite'),

@@ -3,12 +3,22 @@ import 'package:flutter/material.dart';
 import '../models/task.dart';
 
 class CategoryCard extends StatelessWidget {
-  const CategoryCard({Key? key, required this.task}) : super(key: key);
+  CategoryCard(
+      {Key? key, required this.pendingTask, required this.completedTask})
+      : super(key: key);
 
-  final List<Task> task;
+  final List<Task> pendingTask, completedTask;
+
+  int total = 0;
+
+  double getPer() {
+    total = (pendingTask.length + completedTask.length);
+    return completedTask.length / total;
+  }
 
   @override
   Widget build(BuildContext context) {
+    print(getPer());
     return Container(
       width: 200,
       decoration: BoxDecoration(
@@ -21,13 +31,25 @@ class CategoryCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('${task.length} tasks'),
-            Text('Personal', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),),
-            SizedBox(height: 10,),
+            Text('${pendingTask.length} Pending'),
+            Text(
+              'Personal',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Text(
+              '${completedTask.length} Completed',
+              style: TextStyle(fontSize: 12),
+            ),
+            SizedBox(
+              height: 10,
+            ),
             LinearProgressIndicator(
-              value: 0.6,
+              value: total > 0 ? getPer() : 0,
               backgroundColor: Colors.white54,
-              valueColor: AlwaysStoppedAnimation<Color>(Color(0xffdb09ee)) ,
+              valueColor: AlwaysStoppedAnimation<Color>(Color(0xffdb09ee)),
             )
           ],
         ),

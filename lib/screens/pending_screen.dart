@@ -48,7 +48,8 @@ class PendingTasksScreen extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.only(left: 18),
                   child: CategoryCard(
-                    task: state.pendingTasks,
+                    pendingTask: state.pendingTasks,
+                    completedTask: state.completedTasks,
                   ),
                 ),
               ),
